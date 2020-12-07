@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import shortId from 'shortid';
+
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
@@ -14,12 +16,12 @@ class App extends Component {
     ],
     filter: '',
   };
+
   formSubmitHandler = ({ name, number }) => {
     if (!name || !number) return;
 
-    const contactNames = this.state.contacts.map(contact =>
-      contact.name.toLowerCase(),
-    );
+    const { contacts } = this.state;
+    const contactNames = contacts.map(contact => contact.name.toLowerCase());
     if (contactNames.includes(name.toLowerCase())) {
       alert(`${name} is already in contacts.`);
       return;
@@ -36,9 +38,11 @@ class App extends Component {
       };
     });
   };
+
   changeFilter = e => {
-    this.setState({ filter: e.currentTarget.value });
+    this.setState({ filter: e.target.value });
   };
+
   getFilteredContacts = () => {
     const { contacts, filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
@@ -46,6 +50,7 @@ class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter),
     );
   };
+
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),

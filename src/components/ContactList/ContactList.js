@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
+
 export default function ContactList({ contacts, onDeleteContact }) {
   return (
     <ul className={s.list}>
@@ -17,6 +18,7 @@ export default function ContactList({ contacts, onDeleteContact }) {
     </ul>
   );
 }
+
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
